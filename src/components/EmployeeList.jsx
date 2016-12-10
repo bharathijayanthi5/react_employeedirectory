@@ -29,21 +29,37 @@ class EmployeeList extends React.Component{
  updateSearch(event){
    this.setState({search: event.target.value.substr(0,20)});
  }
+ addEmployee(event) {
+   event.preventDefault();
+   let name = this.refs.name.value;
+   let email = this.refs.email.value;
+   let id = this.refs.id.value;
+
+   this.setState({
+     data: this.state.data.concat({id, name, email})
+   })
+
+ }
   _addByValue(){
    this.setState({
      value: this.state.value + 1
    });
  }
-
   render(){
 let filteredEmployees = data.filter(
   (info) => {
     return info.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
   }
 );
+
     return(
       <div>
-        <p className="search"><input type="text" value={this.state.search} onChange={this.updateSearch.bind(this)} /></p>
+        <p className="search"><input type="text" placeholder="search" value={this.state.search} onChange={this.updateSearch.bind(this)} /></p>
+        <form className="form" onSubmit={this.addEmployee.bind(this)}>
+          <input type="text" ref="name" />
+          <input type="text" ref="email" />
+          <button type="submit">Add New Employee</button>
+        </form>
       {filteredEmployees.map(info =>
         <EmployeeListItem key={info.id} {...info} />
           )}
