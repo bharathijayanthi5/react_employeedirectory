@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import '../App.css';
 
-const data = [{ name:'Bharathi Jayanthi', email:'bharathi@gurujada.org' },
-              { name:'Josh', email:'josh@gurujada.org' },
+
+const data = [{ image:'./images/Bharathi.jpg', name:'Bharathi Jayanthi', email:'bharathi@gurujada.org' },
+              { image:'./images/Bharathi.jpg', name:'Josh', email:'josh@gurujada.org' },
               { name:'Sunil Varma', email:'sunil@gurujada.org' },
               { name:'Sravani', email:'sravani@gurujada.org' },
               { name:'Kiran Kumar', email:'kiran@gurujada.org' },
@@ -13,6 +14,7 @@ const data = [{ name:'Bharathi Jayanthi', email:'bharathi@gurujada.org' },
 
 const EmployeeListItem = props =>
 <div className="col-md-4 details">
+  <img src={props.image} alt="bharathi" />
   <h3>{props.name}</h3>
   <p>{props.email}</p>
 </div>;
